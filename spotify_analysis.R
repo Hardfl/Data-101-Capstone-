@@ -201,3 +201,31 @@ rules <- apriori(trans,parameter=list(supp=0.1, conf=0.6, minlen=2))
 strong_rules <- subset(rules, lift > 1)
 inspect(strong_rules)
 
+
+# 11. Prediction Challenge: Can we predict whether a song will be highly popular using audio features available at release time?
+
+# Baseline model: predict majority class
+baseline_pred <- rep(
+  names(which.max(table(train$high_pop))),
+  nrow(test)
+)
+
+baseline_acc <- mean(baseline_pred == test$high_pop)
+
+cat("Baseline Accuracy:", round(baseline_acc*100, 2), "%\n")
+
+# Confusion Matrix
+conf_mat <- table(
+  Predicted = test_pred,
+  Actual = test$high_pop
+)
+
+conf_mat
+
+# Interpretation:
+# The baseline model performs at near-random accuracy (46.67%),
+# indicating that popularity is not trivial to predict.
+# The decision tree correctly identifies most highly popular songs,
+# suggesting that audio features such as energy, valence,
+# danceability, and tempo contain meaningful predictive signal,
+# despite some over-prediction of popularity.
