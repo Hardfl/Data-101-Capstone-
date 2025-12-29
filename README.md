@@ -1,4 +1,5 @@
-# Spotify Popularity Analysis (Data 101 Capstone)
+# Spotify Popularity Analysis  
+### Data 101 Capstone Project
 
 This project analyzes the Spotify Top 50 Songs of 2019 dataset using R to explore
 whether musical features can explain and predict song popularity.
